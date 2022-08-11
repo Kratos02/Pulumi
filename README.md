@@ -2,7 +2,7 @@
 
 Pulumi Zero to Hero
 
-Create a New Project
+# Create a New Project
 
 mkdir quickstart && cd quickstart
 pulumi new azure-yaml
@@ -21,7 +21,7 @@ Let’s review some of the generated project files:
 Pulumi.yaml defines both the project and the program that manages your stack resources.
 Pulumi.dev.yaml contains configuration values for the stack you initialized.
 
-Deploy the Stack
+# Deploy the Stack
 
 Let’s go ahead and deploy your stack:
 
