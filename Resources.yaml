@@ -1,0 +1,22 @@
+name: quickstart
+runtime: yaml
+description: this is a example          
+resources:
+  resourceGroup:
+    type: azure-native:resources:dlugo  
+  sa:
+    type: azure-native:storage:StorageAccount
+    properties:
+      resourceGroupName: ${resourceGroup.dlugo}
+      sku:
+        name: Standard_LRS
+      kind: StorageV2
+variables:
+  storageAccountKeys:
+    Fn::Invoke:
+      Function: azure-native:storage:listStorageAccountKeys
+      Arguments:
+        resourceGroupName: ${resourceGroup.dlugp}
+        accountName: ${sa.name}
+outputs:
+  primaryStorageKey: ${storageAccountKeys.keys[0].value}
