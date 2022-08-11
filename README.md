@@ -34,7 +34,9 @@ To deploy your infrastructure, follow the below steps.
 Let’s review some of the generated project files:
 
 ```Pulumi.yaml``` defines the project.
+
 ```Pulumi.dev.yaml``` contains configuration values for the stack you initialized.
+
 ```project.yaml``` is the Pulumi program that defines your stack resources.
 
 ## Deploy the Stack
