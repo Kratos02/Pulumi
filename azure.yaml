@@ -1,0 +1,39 @@
+
+
+
+// To list all available locations, use the az account list-locations command.
+ // $ az account list-locations --output table
+
+// You can then change the region for your stack by using the pulumi config set command as shown below
+// $ pulumi config set azure-native:location eastus
+
+// Pulumi.yaml defines both the project and the program that manages your stack resources.
+// ulumi.dev.yaml contains configuration values for the stack you initialized.
+
+name: quickstart
+runtime: yaml
+description: A minimal Azure Native Pulumi YAML program
+resources:
+  resourceGroup:
+    type: azure-native:resources:ResourceGroup
+  sa:
+    type: azure-native:storage:StorageAccount
+    properties:
+      resourceGroupName: ${resourceGroup.name}
+      sku:
+        name: Standard_LRS
+      kind: StorageV2
+variables:
+  storageAccountKeys:
+    Fn::Invoke:
+      Function: azure-native:storage:listStorageAccountKeys
+      Arguments:
+        resourceGroupName: ${resourceGroup.name}
+        accountName: ${sa.name}
+outputs:
+  primaryStorageKey: ${storageAccountKeys.keys[0].value}
+
+  // Deploy the Stack
+// Let’s go ahead and deploy your stack
+
+// $ pulumi up

@@ -1,0 +1,25 @@
+// Create a New Project
+mkdir quickstart && cd quickstart 
+pulumi new aws-yaml
+
+// Pulumi.yaml defines both the project and the program that manages your stack resources.
+// Pulumi.dev.yaml contains configuration values for the stack you just initialized.
+
+
+name: quickstart
+runtime: yaml
+description: A minimal AWS Pulumi YAML program
+
+resources:
+  # Create an AWS resource (S3 Bucket)
+  my-bucket:
+    type: aws:s3:Bucket
+
+outputs:
+  # Export the name of the bucket
+  bucketName: ${my-bucket.id}
+
+// Deploy the Stack 
+// Let’s go ahead and deploy your stack
+
+// $ pulumi up 
